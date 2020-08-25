@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="dk">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>øvelse 1</title>
+
+
+    <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        article {
+            flex-grow: 1;
+            flex-basis: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 0 10px 10px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+        }
+
+
+        h3,
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+
+        main {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+
+        h2 {
+            margin-left: 10px;
+        }
+
+
+        img {
+            width: 100%;
+        }
+
+
+        h1,
+        footer {
+            text-align: center;
+        }
+
+
+        header,
+        footer {
+            padding: 10px 0;
+            border: 1px solid #000;
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>Titel</h1>
+
+    </header>
+
+    <main>
+
+        <h2>Undertitel</h2>
+
+        <section>
+
+            <article>
+
+                <img src="https://placeimg.com/640/480/any?t=1598344184912" alt="">
+
+                <h3>Article 1</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sapiente, velit dolorum sint. Hic dolores quisquam commodi explicabo rerum ad laudantium quam perspiciatis labore. Natus iste itaque magni cum voluptates?</p>
+
+            </article>
+
+            <article>
+
+                <img src="https://placeimg.com/640/480/any?t=1598344184912" alt="">
+
+                <h3>Article 2</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sapiente, velit dolorum sint. Hic dolores quisquam commodi explicabo rerum ad laudantium quam perspiciatis labore. Natus iste itaque magni cum voluptates?</p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>This is a footer</footer>
+
+
+    <script>
+        let overskrift = document.querySelector("h1");
+
+        let underoverskrift = document.querySelector("h2");
+
+        let artikel1 = document.querySelector("article:nth-child(1) p");
+        let navn1 = document.querySelector("article:nth-child(1) h3");
+
+        let artikel2 = document.querySelector("article:nth-child(2) p");
+        let navn2 = document.querySelector("article:nth-child(2) h3");
+
+        overskrift.textContent = "Øvelse 2B";
+
+        underoverskrift.textContent = "To billeder med text";
+
+        artikel1.textContent = "bla bla bla bla bla bla bla bla";
+        navn1.textContent = "Billede 1";
+
+        artikel2.innerHTML = " <b> bla bla bla bla bla bla bla bla </b>"
+        navn2.innerHTML = "<b> Bilede 2 </b>";
+
+    </script>
+
+
+</body>
+
+
+</html>
