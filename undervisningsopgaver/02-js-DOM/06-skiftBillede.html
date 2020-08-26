@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="dk">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>øvelse 1</title>
+
+    <style>
+        section {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        article {
+            flex-grow: 1;
+            flex-basis: 400px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 0 10px 10px;
+            box-sizing: border-box;
+            border: 1px solid #000;
+        }
+
+
+        h3,
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+
+        main {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+
+        h2 {
+            margin-left: 10px;
+        }
+
+
+        img {
+            width: 100%;
+        }
+
+
+        h1,
+        footer {
+            text-align: center;
+        }
+
+
+        header,
+        footer {
+            padding: 10px 0;
+            border: 1px solid #000;
+        }
+
+    </style>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded');
+        });
+
+    </script>
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <h1>Titel</h1>
+
+    </header>
+
+    <main>
+
+        <h2>Undertitel</h2>
+
+        <section>
+
+            <article>
+
+                <img src="https://hdfreewallpaper.net/wp-content/uploads/2015/02/art-and-craft.jpg" alt="">
+
+                <h3>Article 1</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sapiente, velit dolorum sint. Hic dolores quisquam commodi explicabo rerum ad laudantium quam perspiciatis labore. Natus iste itaque magni cum voluptates?</p>
+
+            </article>
+
+            <article>
+
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSM0AiitfflEoQrgPQT-Gw9MA-mLAeaJxyc6Q&usqp=CAU" alt="">
+
+                <h3>Article 2</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sapiente, velit dolorum sint. Hic dolores quisquam commodi explicabo rerum ad laudantium quam perspiciatis labore. Natus iste itaque magni cum voluptates?</p>
+
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer>This is a footer</footer>
+
+
+    <script>
+        //laver en section
+        let mainSection = document.querySelector("section");
+
+        //laver en article sektion
+        let newArticle = document.createElement("article");
+
+        //laver er overskrift
+        let overskrift = document.createElement("h3");
+
+        //skriver den text der skal stå i overskriften -> h3'en
+        let overskriftText = document.createTextNode("Article 3");
+
+        //laver en img tag -> et billede
+        let pic = document.createElement("img");
+
+        //laver brødtext
+        let p = document.createElement("p");
+
+        //skriver den text der skal være i brødtexten -> p'en
+        let pText = document.createTextNode("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis sapiente, velit dolorum sint. Hic dolores quisquam commodi explicabo rerum ad laudantium quam perspiciatis labore. Natus iste itaque magni cum voluptates?");
+
+        //sætter det billede ind der skal være i img'en
+        pic.setAttribute("src", "https://images8.alphacoders.com/774/thumb-1920-774078.jpg");
+
+        //sætter overskrift texten ind på overskriftens plads
+        overskrift.appendChild(overskriftText);
+
+        //sætter sillede ind i article sektionen
+        newArticle.appendChild(pic);
+
+        //sætter overskriften ind i article sektionen
+        newArticle.appendChild(overskrift);
+
+        //sætter brødtexten ind på brædtextens plads
+        p.appendChild(pText);
+
+        //sætter brødtexten ind i article sektionen
+        newArticle.appendChild(p);
+
+        //sætter article sektionen ind i sectionen
+        mainSection.appendChild(newArticle);
+
+        //---------------------------------------------------------------------------------------------------------------------------------------
+
+        let pic1 = document.querySelector("article:nth-child(1) img");
+
+        pic1.addEventListener("click", doSomething);
+
+        function doSomething() {
+
+            pic1.src = "https://placeimg.com/640/480/any?t=1598344184912";
+        };
+
+    </script>
+
+</body>
+
+
+</html>
