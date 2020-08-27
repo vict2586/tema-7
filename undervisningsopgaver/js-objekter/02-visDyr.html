@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="dk">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>js øvelse 2</title>
+
+</head>
+
+<body>
+
+    <article></article>
+
+    <script>
+        let dyr = [{
+            "navn": "Gris",
+            "type": "Pattedyr",
+            "levested": "Svinesti",
+            "billede": "http://mabe-kea.dk/E19/pics/pig.png"
+        }]
+
+        let elm = document.querySelector("article");
+
+        dyr.forEach(etDyr => {
+            console.log(etDyr.navn);
+            elm.innerHTML += `<p> Navn: ${etDyr.navn} Type: ${etDyr.type} Levested: ${etDyr.levested} </p>`;
+        })
+
+        //laver en img tag -> et billede
+        let pic = document.createElement("img");
+
+        //sætter det billede ind der skal være i img'en
+        pic.setAttribute("src", "http://mabe-kea.dk/E19/pics/pig.png");
+
+        //sætter sillede ind i article sektionen
+        elm.appendChild(pic);
+
+    </script>
+
+</body>
+
+</html>
