@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="dk">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Persongalleri</title>
+
+    <style>
+        article {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 50%;
+        }
+
+        section {
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        header {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            width: 10vw;
+            height: 2vw;
+            margin-bottom: 10px;
+            margin-left: 390px;
+        }
+
+        .filter {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .valgt {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Alle</h1>
+
+    <header>
+
+        <button class="filter" data-køn="alle">Alle</button>
+        <button class="filter" data-køn="m">Mænd</button>
+        <button class="filter" data-køn="k">Kvinder</button>
+        <button class="filter" data-køn="andet">Andet</button>
+
+    </header>
+
+    <section></section>
+
+    <template>
+        <article>
+            <h2 class="navn"></h2>
+            <img src="" alt="">
+            <p class="køn"></p>
+            <p class="alder"></p>
+            <p class="hobby"></p>
+            <p class="job"></p>
+        </article>
+    </template>
+
+    <script>
+        let filter = "alle";
+
+        let personer;
+
+        let container = document.querySelector("section");
+        let temp = document.querySelector("template");
+
+        document.addEventListener("DOMContentLoaded", loadJSON);
+
+        const link = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json";
+
+        async function loadJSON() {
+            const JSONData = await fetch(link);
+            personer = await JSONData.json();
+            addEventListenersToButons();
+            vis(personer);
+        }
+
+        function vis(personer) {
+
+            const templatePointer = document.querySelector("template");
+
+            const listPointer = document.querySelector("section");
+
+            listPointer.innerHTML = "";
+
+            personer.feed.entry.forEach(person => {
+
+                if (filter == "alle" || filter == person.gsx$køn.$t) {
+
+                    console.log(person);
+
+                    const klon = templatePointer.cloneNode(true).content;
+
+                    klon.querySelector(".navn").textContent = person.gsx$navn.$t + " " + person.gsx$efternavn.$t;
+                    klon.querySelector(".køn").textContent = person.gsx$køn.$t;
+                    klon.querySelector(".alder").textContent = person.gsx$alder.$t;
+                    klon.querySelector(".hobby").textContent = person.gsx$hobby.$t;
+                    klon.querySelector(".job").textContent = person.gsx$job.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+
+                    listPointer.appendChild(klon);
+                }
+            })
+        }
+
+
+        function addEventListenersToButons() {
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.addEventListener("click", filterBTNs);
+            })
+        }
+
+
+        function filterBTNs() {
+            filter = this.dataset.køn;
+
+            document.querySelector("h1").textContent = this.textContent;
+
+            document.querySelectorAll(".filter").forEach((btn) => {
+
+                btn.classList.remove("valgt");
+            })
+
+            this.classList.add("valgt");
+
+            vis(personer);
+        }
+    </script>
+
+</body></html>
