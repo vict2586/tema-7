@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="dk">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Øvelse</title>
+
+    <style>
+        img {
+            max-width: 50%;
+        }
+
+        #detalje {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: scroll;
+        }
+
+        #detalje article {
+            width: 60vw;
+            min-height: 50vh;
+            margin: auto;
+            padding-left: 20px;
+            padding-top: 0;
+            margin-left: 0;
+        }
+
+        #detalje img {
+            width: 100%;
+            min-height: 60%;
+            object-fit: contain;
+        }
+
+        #luk {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 1rem;
+            margin: 1rem;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 50px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <section></section>
+
+    <Section id="detalje">
+        <article>
+            <button id="luk">Tilbage</button>
+            <h2></h2>
+            <img src="" alt="">
+            <p>Alder: <span class="alder"></span></p>
+            <p>Religion: <span class="rel"></span></p>
+            <p>Hobby: <span class="hobby"></span></p>
+            <p>Kæledyr: <span class="kdyr"></span></p>
+            <p>Job: <span class="job"></span></p>
+            <p>Bopæl: <span class="by"></span></p>
+        </article>
+    </Section>
+
+
+    <template>
+        <article>
+            <h2 class="navn"></h2>
+            <img src="" alt="">
+            <p class="køn"></p>
+            <p class="alder"></p>
+            <p class="hobby"></p>
+            <p class="job"></p>
+        </article>
+    </template>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const id = urlParams.get("id");
+
+        let personer;
+
+        const detalje = document.querySelector("#detalje");
+
+        document.addEventListener("DOMContentLoaded", loadJSON);
+
+        const link = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json";
+
+        async function loadJSON() {
+            const JSONData = await fetch(link);
+            personer = await JSONData.json();
+
+            vis(personer);
+        };
+
+        function vis(personer) {
+
+            const templatePointer = document.querySelector("template");
+
+            const listPointer = document.querySelector("section");
+
+            listPointer.innerHTML = "";
+
+            personer.feed.entry.forEach(person => {
+                if (person.gsx$id.$t == id) {
+                    visDetaljer(person);
+                }
+            });
+        };
+
+        function visDetaljer(person) {
+            detalje.style.display = "block";
+            detalje.querySelector("h2").textContent = person.gsx$navn.$t + " " + person.gsx$efternavn.$t;
+            detalje.querySelector(".alder").textContent = person.gsx$alder.$t;
+            detalje.querySelector(".rel").textContent = person.gsx$religion.$t;
+            detalje.querySelector(".hobby").textContent = person.gsx$hobby.$t;
+            detalje.querySelector(".kdyr").textContent = person.gsx$kæledyr.$t;
+            detalje.querySelector(".job").textContent = person.gsx$job.$t;
+            detalje.querySelector(".by").textContent = person.gsx$by.$t;
+            detalje.querySelector("img").src = person.gsx$billede.$t;
+        };
+
+        document.querySelector("#luk").addEventListener("click", () => history.back());
+
+    </script>
+
+</body>
+
+</html>
