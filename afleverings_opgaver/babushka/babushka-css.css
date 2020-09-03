@@ -1,0 +1,100 @@
+body {
+    background-color: burlywood;
+}
+
+splash {
+    width: 100%;
+    height: 100vh;
+    left: 345px;
+}
+
+article {
+    border: 1px solid #EFEFEF;
+    padding: 10px;
+}
+
+img {
+    max-width: 100%;
+}
+
+section {
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1 {
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.filter {
+    display: flex;
+    flex-grow: 1;
+    background-color: #C1272D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 2px 5px 2px;
+    cursor: pointer;
+}
+
+.valgt {
+    background-color: black;
+}
+
+#popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .8);
+    display: none;
+}
+
+#popup article {
+    width: 70vw;
+    height: 50vh;
+    margin: 10rem auto;
+    background-color: white;
+    display: flex;
+    position: relative;
+}
+
+#popup img {
+    max-width: 50%;
+}
+
+#popup div {
+
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#luk {
+    position: absolute;
+    top: 1.5rem;
+    right: 0rem;
+    background-color: #C1272D;
+    color: white;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 40px 4px 2px;
+}
